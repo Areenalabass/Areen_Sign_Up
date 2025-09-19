@@ -24,164 +24,148 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 16),
 
+            Text(
+              "Sign up",
+              style: TextStyle(
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 8),
+            Text(
+              "Sign up with a valid Email",
+              style: TextStyle(fontSize: 14, color: Colors.black87),
+            ),
 
+            SizedBox(height: 24),
 
-              SizedBox(height: 16),
-
-
-              Text(
-                "Sign up",
-                style: TextStyle(
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
+            TextField(
+              controller: emailController,
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(
+                hintText: "Alabassareen@gmail.com",
+                labelText: "Email address",
+                errorText: showErrorEmail ? "Invalid email" : null,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
                 ),
               ),
-              SizedBox(height: 8),
-              Text(
-                "Sign up with a valid Email",
-                style: TextStyle(fontSize: 14, color: Colors.black87),
-              ),
+            ),
 
-              SizedBox(height: 24),
+            SizedBox(height: 20),
 
-
-              TextField(
-                controller: emailController,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  hintText: "Alabassareen@gmail.com",
-                  labelText: "Email address",
-                  errorText: showErrorEmail ? "Invalid email" : null,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              ),
-
-              SizedBox(height: 20),
-
-
-              SizedBox(
-                width: double.infinity,
-                height: 50,
-                child: TextButton(
-                  onPressed: () {
-                    showErrorEmail = !isEmail(em: emailController.text);
-                    setState(() {});
-                    if (!showErrorEmail) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => HomeScreen1(
-                            email: emailController.text,
-                          ),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: TextButton(
+                onPressed: () {
+                  showErrorEmail = !isEmail(em: emailController.text);
+                  setState(() {});
+                  if (!showErrorEmail) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomeScreen1(
+                          email: emailController.text,
                         ),
-                      );
-                    }
-                  },
-                  style: TextButton.styleFrom(
-                    backgroundColor: Colors.yellow[700],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
+                      ),
+                    );
+                  }
+                },
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.yellow[700],
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                  child: Text(
-                    "Continue",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
+                ),
+                child: Text(
+                  "Continue",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
+            ),
 
-              SizedBox(height: 24),
+            SizedBox(height: 24),
 
-              // Divider with OR
-              Row(
-                children: [
-                  Expanded(child: Divider(thickness: 1)),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Text("or"),
-                  ),
-                  Expanded(child: Divider(thickness: 1)),
-                ],
-              ),
+            Row(
+              children: [
+                Expanded(child: Divider(thickness: 1)),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text("or"),
+                ),
+                Expanded(child: Divider(thickness: 1)),
+              ],
+            ),
 
-              SizedBox(height: 16),
+            SizedBox(height: 16),
 
+            socialButton(
+              icon: Icons.apple,
+              label: "Continue with Apple",
+              backgroundColor: Colors.black,
+              textColor: Colors.white,
+            ),
 
-              socialButton(
-                icon: Icons.apple,
-                label: "Continue with Apple",
-                backgroundColor: Colors.black,
-                textColor: Colors.white,
-              ),
+            SizedBox(height: 12),
 
-              SizedBox(height: 12),
+            socialButton(
+              icon: FontAwesomeIcons.google,
+              label: "Continue with Google",
+              backgroundColor: Color(0xFF4285F4),
+              textColor: Colors.white,
+            ),
 
+            SizedBox(height: 12),
 
-              socialButton(
-                icon: FontAwesomeIcons.google, // <-- Add your own asset
-                label: "Continue with Google",
-                backgroundColor: Color(0xFF4285F4),
-                textColor: Colors.white,
-              ),
+            socialButton(
+              icon: FontAwesomeIcons.facebook,
+              label: "Continue with Facebook",
+              backgroundColor: Color(0xFF1877F2),
+              textColor: Colors.white,
+            ),
 
+            Spacer(),
 
-              SizedBox(height: 12),
-
-
-              socialButton(
-                icon: FontAwesomeIcons.facebook,
-                label: "Continue with Facebook",
-                backgroundColor: Color(0xFF1877F2),
-                textColor: Colors.white,
-              ),
-
-              Spacer(),
-
-
-              Center(
-                child: TextButton(
-                  onPressed: () {},
-                  child: Text.rich(
-                    TextSpan(
-                      text: "Already have an account? ",
-                      children: [
-                        TextSpan(
-                          text: "Log in",
-                          style: TextStyle(
-                            color: Colors.blue,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
-                      ],
-                    ),
+            Center(
+              child: TextButton(
+                onPressed: () {},
+                child: Text.rich(
+                  TextSpan(
+                    text: "Already have an account? ",
+                    children: [
+                      TextSpan(
+                        text: "Log in",
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
                   ),
                 ),
               ),
+            ),
 
-              SizedBox(height: 12),
-
-            ],
-          ),
+            SizedBox(height: 12),
+          ],
         ),
       ),
     );
   }
 
   Widget socialButton({
-    IconData? icon,
-    String? iconAsset,
+    required IconData icon,
     required String label,
     required Color backgroundColor,
     required Color textColor,
@@ -191,13 +175,7 @@ class _SignUpState extends State<SignUp> {
       height: 50,
       child: TextButton.icon(
         onPressed: () {},
-        icon: icon != null
-            ? Icon(icon, color: textColor)
-            : Image.asset(
-          iconAsset!,
-          height: 20,
-          width: 20,
-        ),
+        icon: Icon(icon, color: textColor),
         label: Text(
           label,
           style: TextStyle(color: textColor, fontWeight: FontWeight.bold),
